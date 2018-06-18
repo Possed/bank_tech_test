@@ -1,4 +1,5 @@
 require 'account'
+require 'transaction'
 
 describe Account do
 
@@ -6,9 +7,7 @@ describe Account do
     it 'initializes a new account with balance = 0' do
       expect(subject.balance).to equal(0)
     end
-    it 'initializes a new account with an empty transaction' do
-      expect(subject.transaction).to be_empty
-    end
+
     it 'initializes a new account with an empty history of transactions' do
       expect(subject.statement).to be_empty
     end
@@ -20,6 +19,10 @@ describe Account do
       subject.deposit(5)
       expect(subject.balance).to eq(5)
     end
+    # it 'created a new transaction instance' do
+    #   subject.deposit(5)
+    #   expect(@transaction).to be_an_instance_of(Transaction)
+    # end
   end
 
 

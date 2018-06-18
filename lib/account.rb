@@ -1,15 +1,18 @@
+require_relative 'transaction'
+
 class Account
-  attr_reader :balance, :transaction, :statement, :amount;
+  attr_reader :balance, :amount, :statement;
 
   def initialize
     @balance = 0;
-    @transaction = {};
     @statement = [];
   end
 
-  def deposit(amount)
+  def deposit(amount, date = Time.now.strftime("%d %m %Y"), transaction = Transaction.new)
     @amount = amount;
     @balance += amount;
+    @transaction = transaction;
+    # transaction.add_deposit(date, amount, balance)
   end
 
   def withdrawl(amount)
