@@ -4,7 +4,7 @@ require 'transaction'
 describe Account do
 
   describe '#initialize' do
-    it 'initializes a new account with balance = 0' do
+    it 'initializes a new account with balance 0' do
       expect(subject.balance).to equal(0)
     end
 
@@ -19,9 +19,14 @@ describe Account do
       subject.deposit(5)
       expect(subject.balance).to eq(5)
     end
-    it 'created a new transaction instance' do
+    it 'creates a new transaction instance' do
       subject.deposit(5)
       expect(subject.transactions).to be_an_instance_of(Transaction)
+    end
+
+    it 'created a transactions with the deposit details' do
+      subject.deposit(10)
+      expect(subject.transactions.transaction).to eq({:date=>"18/06/2018", :credit=>10, :balance=>10})
     end
   end
 
