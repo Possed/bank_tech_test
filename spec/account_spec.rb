@@ -14,4 +14,11 @@ describe Account do
     end
   end
 
+  describe '#deposit' do
+    it 'adds a given amount to the total balance' do
+      subject.deposit(5)
+      expect(subject.balance).to eq(5)
+    end
+  end
+
 end

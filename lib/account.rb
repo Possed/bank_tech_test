@@ -4,6 +4,11 @@ class Account
   def initialize
     @balance = 0;
     @transaction = {};
-    @statement = {};
+    @statement = [];
   end
+
+  def deposit(amount)
+    @balance += amount;
+  end
+  
 end
