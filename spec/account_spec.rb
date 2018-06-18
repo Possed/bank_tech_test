@@ -21,4 +21,12 @@ describe Account do
     end
   end
 
+  describe '#withdrawl' do
+    it 'substracts a given amount from the total balance' do
+      subject.deposit(15)
+      subject.withdrawl(5)
+      expect(subject.balance).to eq(10)
+    end
+  end
+
 end
