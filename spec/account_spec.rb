@@ -31,22 +31,30 @@ describe Account do
   end
 
 
-  describe '#withdrawl' do
+  describe '#withdrawal' do
     it 'substracts a given amount from the total balance' do
       subject.deposit(15)
-      subject.withdrawl(5)
+      subject.withdrawal(5)
       expect(subject.balance).to eq(10)
     end
-    it 'will raise an error if you want to withdrawl more money than available' do
-      expect{subject.withdrawl(5)}.to raise_error 'insufficient funds available'
+    it 'will raise an error if you want to withdrawal more money than available' do
+      expect{subject.withdrawal(5)}.to raise_error 'insufficient funds available'
       expect(subject.insufficient_funds?).to eq(true)
+    end
+    it 'creates a new transaction instance' do
+      subject.withdrawal(0)
+      expect(subject.transactions).to be_an_instance_of(Transaction)
+    end
+    it 'created a transactions with the deposit details' do
+      subject.deposit(0)
+      expect(subject.transactions.transaction).to eq({:date=>"18/06/2018", :credit=>0, :balance=>0})
     end
   end
 
   describe '#insufficient_funds?' do
     it 'returns false if there is enough balance' do
       subject.deposit(15)
-      subject.withdrawl(5)
+      subject.withdrawal(5)
       expect(subject.insufficient_funds?).to eq(false)
     end
   end

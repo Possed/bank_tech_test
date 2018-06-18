@@ -14,7 +14,7 @@ class Account
     @transactions.log_deposit(amount, balance)
   end
 
-  def withdrawl(amount, transactions = Transaction.new)
+  def withdrawal(amount, transactions = Transaction.new)
     @amount = amount;
     raise 'insufficient funds available' if insufficient_funds?
     @balance -= amount;
