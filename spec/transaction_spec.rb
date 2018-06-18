@@ -15,5 +15,10 @@ describe Transaction do
     end
   end
 
-  
+  describe '#log_withdrawal' do
+    it 'adds the deposit as a complete transaction' do
+      subject.log_withdrawal('18/06/2018', 5, 10)
+      expect(subject.transaction). to eq({date: '18/06/2018', debit: 5, balance: 10})
+    end
+  end
 end

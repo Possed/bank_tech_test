@@ -11,4 +11,9 @@ class Transaction
     @transaction[:balance] = balance;
   end
 
+  def log_withdrawal(date = Time.now.strftime("%d/%m/%Y"), debit, balance)
+    @transaction[:date] = date;
+    @transaction[:debit] = debit;
+    @transaction[:balance] = balance;
+  end
 end
