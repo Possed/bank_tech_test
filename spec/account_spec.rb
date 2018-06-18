@@ -9,6 +9,9 @@ describe Account do
     it 'initializes a new account with an empty transaction' do
       expect(subject.transaction).to be_empty
     end
+    it 'initializes a new account with an empty history of transactions' do
+      expect(subject.statement).to be_empty
+    end
   end
 
 end
