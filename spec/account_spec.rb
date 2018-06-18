@@ -14,12 +14,14 @@ describe Account do
     end
   end
 
+
   describe '#deposit' do
     it 'adds a given amount to the total balance' do
       subject.deposit(5)
       expect(subject.balance).to eq(5)
     end
   end
+
 
   describe '#withdrawl' do
     it 'substracts a given amount from the total balance' do
@@ -29,7 +31,17 @@ describe Account do
     end
     it 'will raise an error if you want to withdrawl more money than available' do
       expect{subject.withdrawl(5)}.to raise_error 'insufficient funds available'
+      expect(subject.insufficient_funds?).to eq(true)
     end
   end
+
+  describe '#insufficient_funds?' do
+    it 'returns false if there is enough balance' do
+      subject.deposit(15)
+      subject.withdrawl(5)
+      expect(subject.insufficient_funds?).to eq(false)
+    end
+  end
+
 
 end
