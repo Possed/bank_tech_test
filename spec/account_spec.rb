@@ -19,10 +19,10 @@ describe Account do
       subject.deposit(5)
       expect(subject.balance).to eq(5)
     end
-    # it 'created a new transaction instance' do
-    #   subject.deposit(5)
-    #   expect(@transaction).to be_an_instance_of(Transaction)
-    # end
+    it 'created a new transaction instance' do
+      subject.deposit(5)
+      expect(subject.transactions).to be_an_instance_of(Transaction)
+    end
   end
 
 

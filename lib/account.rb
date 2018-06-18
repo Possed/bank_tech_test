@@ -1,24 +1,25 @@
 require_relative 'transaction'
 
 class Account
-  attr_reader :balance, :amount, :statement;
+  attr_reader :balance, :amount, :statement, :transactions;
 
   def initialize
     @balance = 0;
     @statement = [];
   end
 
-  def deposit(amount, date = Time.now.strftime("%d %m %Y"), transaction = Transaction.new)
-    @amount = amount;
+  def deposit(amount, transactions = Transaction.new)
     @balance += amount;
-    @transaction = transaction;
-    # transaction.add_deposit(date, amount, balance)
+    @transactions = transactions
+    @transactions.log_deposit(amount, balance)
   end
 
-  def withdrawl(amount)
+  def withdrawl(amount, transactions = Transaction.new)
     @amount = amount;
     raise 'insufficient funds available' if insufficient_funds?
     @balance -= amount;
+    @transactions = transactions;
+    @transactions.log_withdrawal(amount, balance)
   end
 
   def insufficient_funds?
