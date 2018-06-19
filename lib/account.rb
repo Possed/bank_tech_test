@@ -10,23 +10,31 @@ class Account
   end
 
   def deposit(amount, transactions = Transaction.new)
-    @balance += amount;
-    @transactions = transactions
+    @amount = amount;
+    add_to_balance
+    @transactions = transactions;
     @transactions.log_deposit(amount, balance)
-    @acc_statement.statement << @transactions.transaction
+    @acc_statement.add_to_statement(@transactions.transaction)
   end
 
   def withdrawal(amount, transactions = Transaction.new)
     @amount = amount;
     raise 'insufficient funds available' if insufficient_funds?
-    @balance -= amount;
+    remove_from_balance;
     @transactions = transactions;
     @transactions.log_withdrawal(amount, balance)
-    @acc_statement.statement << @transactions.transaction
+    @acc_statement.add_to_statement(@transactions.transaction)
   end
 
   def insufficient_funds?
-    @balance - @amount < 0
+    balance - amount < 0
   end
 
+  def add_to_balance
+    @balance += amount
+  end
+
+  def remove_from_balance
+    @balance -= amount
+  end
 end

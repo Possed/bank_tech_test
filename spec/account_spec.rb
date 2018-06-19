@@ -2,8 +2,6 @@ require 'account'
 require 'transaction'
 
 describe Account do
-
-
   describe '#initialize' do
     it 'initializes a new account with balance 0' do
       expect(subject.balance).to equal(0)
@@ -31,7 +29,7 @@ describe Account do
 
     it 'creates a transactions with the deposit details' do
       subject.deposit(10)
-      expect(subject.transactions.transaction).to eq({:date=>"19/06/2018", :credit=>10, :debit=>"      ", :balance=>10})
+      expect(subject.transactions.transaction).to eq({date: "19/06/2018", credit: 10, debit:"      ", balance: 10})
     end
 
   end
@@ -62,6 +60,21 @@ describe Account do
       subject.deposit(15)
       subject.withdrawal(5)
       expect(subject.insufficient_funds?).to eq(false)
+    end
+  end
+
+  describe '#add to balance' do
+    it 'adds the given amount to the total balance' do
+      subject.deposit(10)
+      expect(subject.add_to_balance).to eq(20)
+    end
+  end
+
+  describe '#remove from balance' do
+    it 'removes the given ammount from the total balance' do
+      subject.deposit(100)
+      subject.withdrawal(10)
+      expect(subject.remove_from_balance).to eq(80)
     end
   end
 
