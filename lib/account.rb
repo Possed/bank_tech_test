@@ -1,17 +1,19 @@
 require_relative 'transaction'
+require_relative 'statement'
 
 class Account
-  attr_reader :balance, :amount, :statement, :transactions;
+  attr_reader :balance, :amount, :acc_statement, :transactions;
 
   def initialize
     @balance = 0;
-    @statement = [];
+    @acc_statement = Statement.new;
   end
 
   def deposit(amount, transactions = Transaction.new)
     @balance += amount;
     @transactions = transactions
     @transactions.log_deposit(amount, balance)
+    @acc_statement.statement << @transactions.transaction
   end
 
   def withdrawal(amount, transactions = Transaction.new)
@@ -20,6 +22,7 @@ class Account
     @balance -= amount;
     @transactions = transactions;
     @transactions.log_withdrawal(amount, balance)
+    @acc_statement.statement << @transactions.transaction
   end
 
   def insufficient_funds?

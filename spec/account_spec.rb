@@ -3,13 +3,14 @@ require 'transaction'
 
 describe Account do
 
+
   describe '#initialize' do
     it 'initializes a new account with balance 0' do
       expect(subject.balance).to equal(0)
     end
 
     it 'initializes a new account with an empty history of transactions' do
-      expect(subject.statement).to be_empty
+      expect(subject.acc_statement.statement).to be_empty
     end
   end
 
@@ -26,7 +27,7 @@ describe Account do
 
     it 'created a transactions with the deposit details' do
       subject.deposit(10)
-      expect(subject.transactions.transaction).to eq({:date=>"18/06/2018", :credit=>10, :balance=>10})
+      expect(subject.transactions.transaction).to eq({:date=>"19/06/2018", :credit=>10, :balance=>10})
     end
   end
 
@@ -47,7 +48,7 @@ describe Account do
     end
     it 'created a transactions with the deposit details' do
       subject.deposit(0)
-      expect(subject.transactions.transaction).to eq({:date=>"18/06/2018", :credit=>0, :balance=>0})
+      expect(subject.transactions.transaction).to eq({:date=>"19/06/2018", :credit=>0, :balance=>0})
     end
   end
 
