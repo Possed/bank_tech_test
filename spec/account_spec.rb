@@ -29,7 +29,7 @@ describe Account do
 
     it 'creates a transactions with the deposit details' do
       subject.deposit(10)
-      expect(subject.transactions.transaction).to eq({date: "19/06/2018", credit: 10, debit:"      ", balance: 10})
+      expect(subject.transactions.transaction).to eq({date: "20/06/2018", credit: 10, debit:"      ", balance: 10})
     end
 
   end
@@ -51,7 +51,7 @@ describe Account do
     end
     it 'created a transactions with the deposit details' do
       subject.withdrawal(0)
-      expect(subject.transactions.transaction).to eq({:date=>"19/06/2018", :credit=>"      ", :debit=>0, :balance=>0})
+      expect(subject.transactions.transaction).to eq({:date=>"20/06/2018", :credit=>"      ", :debit=>0, :balance=>0})
     end
   end
 
