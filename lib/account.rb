@@ -10,36 +10,36 @@ class Account
   end
 
   def deposit(amount, transactions = Transaction.new)
-    @amount = amount;
-    raise 'Amount is invalid. Please enter a number greater than 0' if is_amount_valid?
-    add_to_balance
-    @transactions = transactions;
+    raise 'Amount is invalid. Please enter a number greater than 0' if is_amount_valid?(amount)
+    add_to_balance(amount)
+    @transactions = transactions
     @transactions.log_deposit(amount, balance)
     @acc_statement.add_to_statement(@transactions.transaction)
   end
 
   def withdrawal(amount, transactions = Transaction.new)
-    @amount = amount;
-    raise 'insufficient funds available' if insufficient_funds?
-    remove_from_balance;
-    @transactions = transactions;
+    raise 'insufficient funds available' if insufficient_funds?(amount)
+    remove_from_balance(amount)
+    @transactions = transactions
     @transactions.log_withdrawal(amount, balance)
     @acc_statement.add_to_statement(@transactions.transaction)
   end
 
-  def insufficient_funds?
+  private
+  def insufficient_funds?(amount)
     balance - amount < 0
   end
 
-  def is_amount_valid?
-    !(@amount.is_a? Integer) || @amount < 0 
+  def is_amount_valid?(amount)
+    !(amount.is_a? Integer) || amount < 0
   end
 
-  def add_to_balance
+  def add_to_balance(amount)
     @balance += amount
   end
 
-  def remove_from_balance
+  def remove_from_balance(amount)
     @balance -= amount
   end
+
 end
