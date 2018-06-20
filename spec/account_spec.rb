@@ -33,12 +33,12 @@ describe Account do
 
     it 'creates a new transaction instance' do
       subject.deposit(5)
-      expect(subject.transactions).to be_an_instance_of(Transaction)
+      expect(subject.new_transaction).to be_an_instance_of(Transaction)
     end
 
-    it 'creates a transactions with the deposit details' do
+    it 'creates a transaction with the deposit details' do
       subject.deposit(10, "19/06/2018")
-      expect(subject.transactions.transaction).to eq({date: "19/06/2018", credit: 10, debit:"      ", balance: 10})
+      expect(subject.new_transaction.transaction_details).to eq({date: "19/06/2018", credit: 10, debit:"      ", balance: 10})
     end
   end
 
@@ -57,12 +57,12 @@ describe Account do
 
     it 'creates a new transaction instance' do
       subject.withdrawal(0)
-      expect(subject.transactions).to be_an_instance_of(Transaction)
+      expect(subject.new_transaction).to be_an_instance_of(Transaction)
     end
 
-    it 'created a transactions with the deposit details' do
+    it 'created a transaction with the deposit details' do
       subject.withdrawal(0, "19/06/2018")
-      expect(subject.transactions.transaction).to eq({:date=>"19/06/2018", :credit=>"      ", :debit=>0, :balance=>0})
+      expect(subject.new_transaction.transaction_details).to eq({:date=>"19/06/2018", :credit=>"      ", :debit=>0, :balance=>0})
     end
   end
 

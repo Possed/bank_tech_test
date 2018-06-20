@@ -2,27 +2,27 @@ require_relative 'transaction'
 require_relative 'statement'
 
 class Account
-  attr_reader :balance, :amount, :acc_statement, :transactions;
+  attr_reader :balance, :amount, :acc_statement, :new_transaction;
 
   def initialize
-    @balance = 0;
-    @acc_statement = Statement.new;
+    @balance = 0
+    @acc_statement = Statement.new
   end
 
-  def deposit(amount, date = Time.now.strftime("%d/%m/%Y"), transactions = Transaction.new)
+  def deposit(amount, date = Time.now.strftime("%d/%m/%Y"), new_transaction = Transaction.new)
     raise 'Amount is invalid. Please enter a number greater than 0' if is_amount_valid?(amount)
     add_to_balance(amount)
-    @transactions = transactions
-    @transactions.log_deposit(date, amount, balance)
-    @acc_statement.add_to_statement(@transactions.transaction)
+    @new_transaction = new_transaction
+    @new_transaction.log_deposit(date, amount, balance)
+    @acc_statement.add_to_statement(@new_transaction.transaction_details)
   end
 
-  def withdrawal(amount, date = Time.now.strftime("%d/%m/%Y"), transactions = Transaction.new)
+  def withdrawal(amount, date = Time.now.strftime("%d/%m/%Y"), new_transaction = Transaction.new)
     raise 'insufficient funds available' if insufficient_funds?(amount)
     remove_from_balance(amount)
-    @transactions = transactions
-    @transactions.log_withdrawal(date, amount, balance)
-    @acc_statement.add_to_statement(@transactions.transaction)
+    @new_transaction = new_transaction
+    @new_transaction.log_withdrawal(date, amount, balance)
+    @acc_statement.add_to_statement(@new_transaction.transaction_details)
   end
 
   private

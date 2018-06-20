@@ -1,21 +1,21 @@
 class Transaction
-  attr_reader :transaction;
+  attr_reader :transaction_details;
 
   def initialize
-    @transaction = {};
+    @transaction_details = {};
   end
 
   def log_deposit(date , credit, balance)
-    @transaction[:date] = date;
-    @transaction[:credit] = credit;
-    @transaction[:debit] = "      ";
-    @transaction[:balance] = balance;
+    @transaction_details[:date] = date;
+    @transaction_details[:credit] = credit;
+    @transaction_details[:debit] = "      ";
+    @transaction_details[:balance] = balance;
   end
 
   def log_withdrawal(date = Time.now.strftime("%d/%m/%Y"), debit, balance)
-    @transaction[:date] = date;
-    @transaction[:credit] = "      ";
-    @transaction[:debit] = debit;
-    @transaction[:balance] = balance;
+    @transaction_details[:date] = date;
+    @transaction_details[:credit] = "      ";
+    @transaction_details[:debit] = debit;
+    @transaction_details[:balance] = balance;
   end
 end
