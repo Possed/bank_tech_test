@@ -40,7 +40,7 @@ Lastly I've created the Statement class that initialises a instance with an empt
 ####Install and run the app
  - Start by forking this repo and move to the project file;
  - run bundle install in your command line - it will install all the gems for you(rspec for testing and simplecov for testing coverage);
- - run the rb file and have fun
+ - run the rb file and have fun;
 
 Example:
  - create an account
@@ -49,11 +49,11 @@ Example:
  - make deposits and withdrawals and then print the Statement
  <img width="572" alt="screen shot 2018-06-20 at 10 29 45" src="https://user-images.githubusercontent.com/33420740/41650038-00c94554-7475-11e8-853a-dd1480744251.png">
 
- ####Testing
+####Testing
  You can use rspec to run the tests and simplecov gem will also show you the test coverage.
  Both unit tests and feature tests have 100% coverage.
 
- Future improvements:
+####Future improvements:
  Deposit and withdrawal methods from within the Account class:
  -they both require user input: the amount the user wants to add or withdrawal from their balance. I've assumed the user would use a cash machine to do that so they could only input integers.
  -add edge case when user would input an amount less than 0;
