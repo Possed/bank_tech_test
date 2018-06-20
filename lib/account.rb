@@ -9,19 +9,19 @@ class Account
     @acc_statement = Statement.new;
   end
 
-  def deposit(amount, transactions = Transaction.new)
+  def deposit(amount, date = Time.now.strftime("%d/%m/%Y"), transactions = Transaction.new)
     raise 'Amount is invalid. Please enter a number greater than 0' if is_amount_valid?(amount)
     add_to_balance(amount)
     @transactions = transactions
-    @transactions.log_deposit(amount, balance)
+    @transactions.log_deposit(date, amount, balance)
     @acc_statement.add_to_statement(@transactions.transaction)
   end
 
-  def withdrawal(amount, transactions = Transaction.new)
+  def withdrawal(amount, date = Time.now.strftime("%d/%m/%Y"), transactions = Transaction.new)
     raise 'insufficient funds available' if insufficient_funds?(amount)
     remove_from_balance(amount)
     @transactions = transactions
-    @transactions.log_withdrawal(amount, balance)
+    @transactions.log_withdrawal(date, amount, balance)
     @acc_statement.add_to_statement(@transactions.transaction)
   end
 

@@ -5,7 +5,7 @@ class Transaction
     @transaction = {};
   end
 
-  def log_deposit(date = Time.now.strftime("%d/%m/%Y"), credit, balance)
+  def log_deposit(date , credit, balance)
     @transaction[:date] = date;
     @transaction[:credit] = credit;
     @transaction[:debit] = "      ";
