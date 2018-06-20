@@ -52,9 +52,3 @@ Example:
 ####Testing
  You can use rspec to run the tests and simplecov gem will also show you the test coverage.
  Both unit tests and feature tests have 100% coverage.
-
-####Future improvements:
- Deposit and withdrawal methods from within the Account class:
- -they both require user input: the amount the user wants to add or withdrawal from their balance. I've assumed the user would use a cash machine to do that so they could only input integers.
- -add edge case when user would input an amount less than 0;
- -add edge case when user would input anything else except an integer;

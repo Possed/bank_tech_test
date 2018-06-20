@@ -11,6 +11,7 @@ class Account
 
   def deposit(amount, transactions = Transaction.new)
     @amount = amount;
+    raise 'Amount is invalid. Please enter a number greater than 0' if is_amount_valid?
     add_to_balance
     @transactions = transactions;
     @transactions.log_deposit(amount, balance)
@@ -28,6 +29,10 @@ class Account
 
   def insufficient_funds?
     balance - amount < 0
+  end
+
+  def is_amount_valid?
+    !(@amount.is_a? Integer) || @amount < 0 
   end
 
   def add_to_balance

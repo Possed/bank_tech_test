@@ -22,6 +22,15 @@ describe Account do
       subject.deposit(5)
       expect(subject.balance).to eq(5)
     end
+
+    it 'raises an error if the amount is less than 0' do
+      expect{subject.deposit(-5)}.to raise_error 'Amount is invalid. Please enter a number greater than 0'
+    end
+
+    it 'raises an error if the amount is not an integer' do
+      expect{subject.deposit("five")}.to raise_error 'Amount is invalid. Please enter a number greater than 0'
+    end
+
     it 'creates a new transaction instance' do
       subject.deposit(5)
       expect(subject.transactions).to be_an_instance_of(Transaction)
@@ -31,8 +40,8 @@ describe Account do
       subject.deposit(10)
       expect(subject.transactions.transaction).to eq({date: "20/06/2018", credit: 10, debit:"      ", balance: 10})
     end
-
   end
+
 
 
   describe '#withdrawal' do
@@ -77,6 +86,5 @@ describe Account do
       expect(subject.remove_from_balance).to eq(80)
     end
   end
-
 
 end
