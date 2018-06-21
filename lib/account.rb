@@ -10,7 +10,7 @@ class Account
   end
 
   def deposit(amount, date = Time.now.strftime("%d/%m/%Y"), new_transaction = Transaction.new)
-    raise 'Amount is invalid. Please enter a number greater than 0' if is_amount_valid?(amount)
+    raise 'Amount is invalid. Please enter a number greater than 0' if amount_valid?(amount)
     add_to_balance(amount)
     @new_transaction = new_transaction
     @new_transaction.log_deposit(date, amount, balance)
@@ -30,7 +30,7 @@ class Account
     balance - amount < 0
   end
 
-  def is_amount_valid?(amount)
+  def amount_valid?(amount)
     !(amount.is_a? Integer) || amount < 0
   end
 

@@ -5,7 +5,7 @@ class Transaction
     @transaction_details = {}
   end
 
-  def log_deposit(date , credit, balance)
+  def log_deposit(date, credit, balance)
     @transaction_details[:date] = date
     @transaction_details[:credit] = sprintf('%.2f', credit)
     @transaction_details[:debit] = "      "
