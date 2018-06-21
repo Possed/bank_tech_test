@@ -3,11 +3,12 @@ require 'account'
 
 describe Account do
   let(:test_acc_statement) { double :test_acc_statement, statement: [], add_to_statement: [{date: '18/06/2018', credit: 5, balance: 10}]}
-  let(:new_transaction) { double :new_transaction, transaction_details: {date: "19/06/2018", credit: "10.00", debit:"      ", balance: "10.00"} }
+  let(:test_transaction) { double :test_transaction, transaction_details: {:date=>"19/06/2018", :credit=>"10.00", :debit=>"      ", :balance=>"10.00"}, log_deposit: {date: "19/06/2018", credit: "10.00", debit:"      ", balance: "10.00"},
+  log_withdrawal: {:date=>"19/06/2018", :credit=>"      ", :debit=>"0.00", :balance=>"0.00"}, withdrawal_transaction_details: {:date=>"19/06/2018", :credit=>"      ", :debit=>"0.00", :balance=>"0.00"}}
 
   before (:each) do
     allow(Statement).to receive(:new).and_return(test_acc_statement)
-
+    allow(Transaction).to receive(:new).and_return(test_transaction)
   end
 
   describe '#initialize' do
@@ -56,14 +57,10 @@ describe Account do
       expect{subject.withdrawal(5)}.to raise_error 'insufficient funds available'
     end
 
-    it 'creates a new transaction instance' do
-      subject.withdrawal(0)
-      expect(subject.new_transaction).to be_an_instance_of(Transaction)
-    end
 
     it 'created a transaction with the deposit details' do
       subject.withdrawal(0, "19/06/2018")
-      expect(subject.new_transaction.transaction_details).to eq({:date=>"19/06/2018", :credit=>"      ", :debit=>"0.00", :balance=>"0.00"})
+      expect(subject.new_transaction.withdrawal_transaction_details).to eq({:date=>"19/06/2018", :credit=>"      ", :debit=>"0.00", :balance=>"0.00"})
     end
   end
 
