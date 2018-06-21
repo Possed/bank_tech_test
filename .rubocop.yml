@@ -44,6 +44,7 @@ Metrics/LineLength:
 
 Metrics/LineLength:
   Exclude:
+    - 'lib/*'
     - 'spec/**/*'
     - 'test/**/*'
 
