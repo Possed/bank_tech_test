@@ -4,9 +4,9 @@ require_relative 'statement'
 class Account
   attr_reader :balance, :amount, :acc_statement, :new_transaction;
 
-  def initialize
+  def initialize(acc_statement = Statement.new)
     @balance = 0
-    @acc_statement = Statement.new
+    @acc_statement = acc_statement
   end
 
   def deposit(amount, date = Time.now.strftime("%d/%m/%Y"), new_transaction = Transaction.new)

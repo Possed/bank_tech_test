@@ -1,20 +1,22 @@
 require 'account'
-require 'transaction'
+
 
 describe Account do
+  let(:test_acc_statement) { double :test_acc_statement, statement: [], add_to_statement: [{date: '18/06/2018', credit: 5, balance: 10}]}
+  let(:new_transaction) { double :new_transaction, transaction_details: {date: "19/06/2018", credit: "10.00", debit:"      ", balance: "10.00"} }
 
+  before (:each) do
+    allow(Statement).to receive(:new).and_return(test_acc_statement)
+
+  end
 
   describe '#initialize' do
     it 'initializes a new account with balance 0' do
       expect(subject.balance).to equal(0)
     end
 
-    it 'initializes a new account with an instance of the Statement class' do
-      expect(subject.acc_statement).to be_an_instance_of(Statement);
-    end
-
     it 'initializes a new account with an empty history of transactions' do
-      expect(subject.acc_statement.statement).to be_empty
+      expect(subject.acc_statement.statement).to eq([])
     end
   end
 
@@ -33,12 +35,9 @@ describe Account do
       expect{subject.deposit("five")}.to raise_error 'Amount is invalid. Please enter a number greater than 0'
     end
 
-    it 'creates a new transaction instance' do
-      subject.deposit(5)
-      expect(subject.new_transaction).to be_an_instance_of(Transaction)
-    end
 
     it 'creates a transaction with the deposit details' do
+
       subject.deposit(10, "19/06/2018")
       expect(subject.new_transaction.transaction_details).to eq({date: "19/06/2018", credit: "10.00", debit:"      ", balance: "10.00"})
     end
