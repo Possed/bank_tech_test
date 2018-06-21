@@ -2,21 +2,21 @@
 
 Aim - testing OO and TDD skills by creating code that is easy to access and interact via IRB.
 
-####Specification
-###Requirements
+#### Specification
+### Requirements
 
 Deposits, withdrawal.
 Account statement (date, amount, balance) printing.
 Data can be kept in memory (it doesn't need to be stored to a database or anything).
 
-###Acceptance criteria
+### Acceptance criteria
 
 Given a client makes a deposit of 1000 on 10-01-2012
 And a deposit of 2000 on 13-01-2012
 And a withdrawal of 500 on 14-01-2012
 When the client prints their bank statement
 
-###Then the client would see
+### Then the client would see
 
 date || credit || debit || balance
 14/01/2012 || || 500.00 || 2500.00
@@ -24,7 +24,7 @@ date || credit || debit || balance
 10/01/2012 || 1000.00 || || 1000.00
 
 
-####Approach
+#### Approach
 TDD - I've started by creating basic tests and build up from there.
 
 I've created an Account class that initialises a new account with a balance equal to 0.
@@ -37,18 +37,18 @@ Secondly I've created the Transaction class that creates an empty object every t
 
 Lastly I've created the Statement class that initialises a instance with an empty array when an Account instance is created to store all the transactions of that account. The statement instance is able to add every transaction form the account to the array and print it for the user.
 
-####Install and run the app
+#### Install and run the app
  - Start by forking this repo and move to the project file;
  - run bundle install in your command line - it will install all the gems for you(rspec for testing and simplecov for testing coverage);
  - run the rb file and have fun;
 
 Example:
  - create an account
-<img width="569" alt="screen shot 2018-06-20 at 10 18 18" src="https://user-images.githubusercontent.com/33420740/41649467-8adf5870-7473-11e8-8a23-12c8d87d4d71.png">
+<img width="565" alt="screen shot 2018-06-21 at 12 23 01" src="https://user-images.githubusercontent.com/33420740/41716336-01566464-754e-11e8-8c36-4e1eb3d40f04.png">
 
  - make deposits and withdrawals and then print the Statement
- <img width="572" alt="screen shot 2018-06-20 at 10 29 45" src="https://user-images.githubusercontent.com/33420740/41650038-00c94554-7475-11e8-853a-dd1480744251.png">
+<img width="567" alt="screen shot 2018-06-21 at 12 23 21" src="https://user-images.githubusercontent.com/33420740/41716351-1363b486-754e-11e8-8150-f7c73805cd6c.png">
 
-####Testing
+#### Testing
  You can use rspec to run the tests and simplecov gem will also show you the test coverage.
  Both unit tests and feature tests have 100% coverage.
